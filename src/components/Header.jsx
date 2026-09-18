@@ -12,15 +12,14 @@ const formattedTimeParts = new Intl.DateTimeFormat(
 ).formatToParts(currentTime);
 
 const weekday = formattedTimeParts.find((p) => p.type === "weekday").value;
-console.log(weekday);
 const month = formattedTimeParts.find((p) => p.type === "month").value;
-console.log(month);
 const day = formattedTimeParts.find((p) => p.type === "day").value;
-console.log(day);
 const dayPeriod = formattedTimeParts.find((p) => p.type === "dayPeriod").value; // doing this in one line is so very confusing man
-const lastWord = dayPeriod.slice(dayPeriod.lastIndexOf(" ") + 1);
-const greetWordFormatted = lastWord[0].toUpperCase() + lastWord.slice(1);
-console.log(greetWordFormatted);
+const greeting =
+  dayPeriod
+    .slice(dayPeriod.lastIndexOf(" ") + 1)
+    .charAt(0)
+    .toUpperCase() + dayPeriod.slice(dayPeriod.lastIndexOf(" ") + 1).slice(1);
 
 export default function Header() {
   return (
@@ -32,11 +31,11 @@ export default function Header() {
           </p>
           <div className="flex flex-col gap-3 md:flex-row md:items-center">
             <h1 className="text-4xl font-semibold tracking-tight">
-              Good Morning, World!
+              Good {greeting}, World!
             </h1>
             <span className="inline-flex items-center gap-2 rounded-full border border-neutral-800/80 bg-neutral-900/70 px-4 py-1 text-xs font-medium text-neutral-300">
               <span className="h-2 w-2 rounded-full bg-emerald-400"></span>
-              Monday, Nov 10
+              {weekday}, {month} {day}
             </span>
           </div>
           <p className="text-sm text-neutral-400 max-w-2xl">
