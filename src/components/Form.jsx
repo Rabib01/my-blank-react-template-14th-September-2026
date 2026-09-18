@@ -6,6 +6,7 @@ export default function Form() {
   const [colorPickerHex, setColorPickerHex] = useState("");
   const [lighterBackGround, setLighterBackGround] = useState("");
   const [urlValidStatus, seturlValidStatus] = useState(false);
+  const [category, setCategory] = useState(null);
 
   // useEffect(() => {
   //   console.log(cardInfo);
@@ -33,7 +34,7 @@ export default function Form() {
       } catch {
         console.log(`not a valid url`);
         setUrlError(
-          "Invalid URL, please correct format - https://something.com",
+          "Invalid URL, please correct the format - https://something.com",
         );
       }
     }
@@ -102,6 +103,16 @@ export default function Form() {
 
     // const lightenedColor = lightenColor(hexToHSL, e.target.value);
     // console.log(lightenedColor);
+  }
+
+  function hangleCategoryChange(firedEvent) {
+    if (firedEvent.target.value === "") {
+      setCategory("");
+      console.log("nothing was selected");
+    } else {
+      console.log(`The selected option was : ${firedEvent.target.value}`);
+      setCategory(firedEvent.target.value);
+    }
   }
 
   return (
@@ -186,10 +197,19 @@ export default function Form() {
               <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
                 Category
               </span>
-              <select className="w-full bg-transparent text-base text-white outline-none">
-                <option className="bg-neutral-900 text-white">
-                  Select category
-                </option>
+              <select
+                onChange={(e) => hangleCategoryChange(e)}
+                className="w-full bg-transparent text-base text-white outline-none"
+              >
+                {category ? (
+                  <option value="" className="bg-neutral-900 text-red-400">
+                    Please do not select the first option.
+                  </option>
+                ) : (
+                  <option value="" className="bg-neutral-900 text-white">
+                    Select category
+                  </option>
+                )}
                 <option className="bg-neutral-900 text-white">Social</option>
                 <option className="bg-neutral-900 text-white">Video</option>
                 <option className="bg-neutral-900 text-white">Design</option>
