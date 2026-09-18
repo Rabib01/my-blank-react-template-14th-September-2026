@@ -5,6 +5,7 @@ export default function Form() {
   const [urlError, setUrlError] = useState("");
   const [colorPickerHex, setColorPickerHex] = useState("");
   const [lighterBackGround, setLighterBackGround] = useState("");
+  const [urlValidStatus, seturlValidStatus] = useState(false);
 
   // useEffect(() => {
   //   console.log(cardInfo);
@@ -21,7 +22,14 @@ export default function Form() {
       try {
         const url = new URL(websiteURLString);
         setUrlError("");
-        // will go to the state where on clicking create bookmark - nothing else to do here !!!
+        seturlValidStatus(true);
+
+        // this is to go back to Please Enter URL with text-neutral-400 after URL looks good homie, 😉 😉 😉
+        setTimeout(() => {
+          seturlValidStatus(false);
+        }, 5000);
+
+        // url = will go to the state where on clicking create bookmark - nothing else to do here !!!
       } catch {
         console.log(`not a valid url`);
         setUrlError(
@@ -120,17 +128,18 @@ export default function Form() {
             {/* validate whether the format of the url is ok */}
             {/* some extra logic to extract the name for example : facebook from facebook.com whiuch is the easiest part imp */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
+              {/* never thought a day would come when I would be using a ternary operator with multiple conditions, well it is here */}
               {urlError ? (
                 <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
                   {urlError}
                 </span>
-              ) : (
+              ) : urlValidStatus ? (
                 <span className="text-xs font-semibold uppercase tracking-wider text-green-400">
-                  {/* eto kahini korte paro na, aro ekta vbole state lagbe ei stupid setTimeout implement korar jonno */}
-                  {/* setTimeout(() =>  */}
-                  {/* // url looks ok */}
-                  {/* // }, 3000); */}
-                  URL looks good homie 😉
+                  URL looks good homie, 😉 😉 😉
+                </span>
+              ) : (
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                  Please Enter URL
                 </span>
               )}
 
