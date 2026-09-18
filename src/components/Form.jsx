@@ -7,6 +7,8 @@ export default function Form() {
   const [lighterBackGround, setLighterBackGround] = useState("");
   const [urlValidStatus, seturlValidStatus] = useState(false);
   const [category, setCategory] = useState(null);
+  const [userName, setUserName] = useState(null);
+  const [userNameErrorStatus, setUserNameErrorStatus] = useState(false);
 
   // useEffect(() => {
   //   console.log(cardInfo);
@@ -110,6 +112,24 @@ export default function Form() {
     setCategory(firedEvent.target.value);
   }
 
+  // ekta validation jodi useName field ta empty thake - elta state
+  // aro ekta validation jodi username field e miltiple words hoi - aro ekta state - multiple span tag renders cannot be done with one state
+  // onek validations normally kore but ami ei duitai korbo
+  function handleUserNameBlur(eventFired) {
+    if (eventFired.target.value === "") {
+      setUserNameErrorStatus(true);
+    } else {
+      setUserNameErrorStatus(false);
+      // multiple words check
+      // triggter cannot have multiple words
+      if (eventFired.target.value.split(" ").lenght > 2) {
+        setUserNameErrorStatus(true);
+      } else {
+        setUserNameErrorStatus(true);
+      }
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto mt-8 px-4">
       {/* The form elements starts here !!  */}
@@ -190,15 +210,13 @@ export default function Form() {
             {/* <!-- Category Select --> */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
               <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                Category
+                Please select a Category
               </span>
               <select
                 onChange={(e) => hangleCategoryChange(e)}
                 className="w-full bg-transparent text-base text-white outline-none"
               >
-                <option className="bg-neutral-900 text-white">
-                  Select category
-                </option>
+                <option className="bg-neutral-900 text-white"></option>
                 <option className="bg-neutral-900 text-white">Social</option>
                 <option className="bg-neutral-900 text-white">Video</option>
                 <option className="bg-neutral-900 text-white">Design</option>
@@ -225,6 +243,7 @@ export default function Form() {
                 Username
               </span>
               <input
+                onBlur={(e) => handleUserNameBlur(e)}
                 type="text"
                 placeholder="Enter username"
                 className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
