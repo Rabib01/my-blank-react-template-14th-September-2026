@@ -11,7 +11,10 @@ export default function Form() {
   const [userNameEmptyStatus, setUserNameEmptyStatus] = useState(false);
   const [userNameMultipleWordStatus, setUserNameMultipleWordStatus] =
     useState(false);
-
+  const [password, setPassword] = useState("");
+  const [passwordEmptyStatus, setPasswordEmptyStatus] = useState(false);
+  const [passwordSixCharacterStatus, setPasswordSixCharacterStatus] =
+    useState(false);
   // useEffect(() => {
   //   console.log(cardInfo);
   // }, [cardInfo]);
@@ -132,18 +135,42 @@ export default function Form() {
       return;
     }
 
-    /**
-     * "this version of handleUserNameBlur - almost ok - but it is procedurally going from checking whether the input field is first empty or not - then if someone puts multiple words - then error is rendered with text-orange-400 - does not account for the fact if someone has entered multiple words first git add . "
-     * git did not let me push 
-    if (eventFired.target.value.split(" ").length > 1) {
-      setUserNameEmptyStatus(false)
-      setUserNameMultipleWordStatus(true);
-      return;
-      }
-      */
-
     console.log(eventFired.target.value);
     setUserName(eventFired.target.value);
+
+    /**
+     * git did not let me push 
+     * ..
+    
+    if (eventFired.target.value === "") {
+      setUserNameEmptyStatus(true);
+      return;
+      }
+      if (eventFired.target.value.split(" ").length > 1) {
+        setUserNameEmptyStatus(false)
+        setUserNameMultipleWordStatus(true);
+        return;
+        }
+        
+    * "this version of handleUserNameBlur - almost ok - but it is procedurally going from checking whether the input field is first empty or not - then if someone puts multiple words - then error is rendered with text-orange-400 - does not account for the fact if someone has entered multiple words first git add . "
+      */
+  }
+
+  // first validation  - check to see if the password field is empty ?
+  // second validation - check to see if there are at least 6 characters
+  // not going to validate if there are multiple words
+  function handlePassWordBlur(eventFired) {
+    setPasswordEmptyStatus(false);
+    setPasswordSixCharacterStatus(false);
+
+    if (eventFired.target.value === "") {
+      setPasswordEmptyStatus(true);
+      return;
+    }
+    if (eventFired.target.value.length < 6) {
+      setPasswordSixCharacterStatus(true);
+      return;
+    }
   }
 
   return (
@@ -170,7 +197,7 @@ export default function Form() {
             {/* validate whether the format of the url is ok */}
             {/* some extra logic to extract the name for example : facebook from facebook.com whiuch is the easiest part imp */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              {/* never thought a day would come when I would be using a ternary operator with multiple conditions, well it is here */}
+              {/* never thought a day would come when I would be using a ternary operator with multiple conditions */}
               {urlError ? (
                 <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
                   {urlError}
@@ -281,10 +308,21 @@ export default function Form() {
 
             {/* <!-- Password Input --> */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                Password
-              </span>
+              {passwordEmptyStatus ? (
+                <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                  Bro, Password cannot be empty
+                </span>
+              ) : passwordSixCharacterStatus ? (
+                <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
+                  Bro, Password must have six characters or more !
+                </span>
+              ) : (
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                  Password.
+                </span>
+              )}
               <input
+                onBlur={(e) => handlePassWordBlur(e)}
                 type="password"
                 placeholder="Enter password"
                 className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
