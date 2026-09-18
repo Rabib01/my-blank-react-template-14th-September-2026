@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 export default function Form() {
   const [cardInfo, setCardInfo] = useState([]);
   const [urlError, setUrlError] = useState("");
+  const [colorPickerHex, setColorPickerHex] = useState("");
+  const [lighterBackGround, setLighterBackGround] = useState("");
 
   // useEffect(() => {
   //   console.log(cardInfo);
@@ -14,12 +16,10 @@ export default function Form() {
     // console.log(e.target.value);
     const websiteURLString = e.target.value;
     if (websiteURLString === "") {
-      console.log("Please, this field cannot be empty");
       setUrlError("Please, this field cannot be empty ");
     } else {
       try {
         const url = new URL(websiteURLString);
-        console.log(`valid url`);
         setUrlError("");
         // will go to the state where on clicking create bookmark - nothing else to do here !!!
       } catch {
@@ -29,6 +29,71 @@ export default function Form() {
         );
       }
     }
+  }
+
+  function handleColorChange(e) {
+    // console.log(e.target.value);
+    setColorPickerHex(e.target.value);
+
+    // all of this to get a lighter background after color picker is clickerd
+    // flow hooche e.target.value theke hex strng ber korbo -> lighten color function e hexToHSL conversion function and e.target.value pass korbo -> hex string is directly destructured to hsl array values inside of lighten color function -> lighten color function takes the hsl values and comes with a lighter lumonisoty value for setting the background of the color picker -> lighter background state is set here -> this changes the backgeound color of lighter background on style since tailwind is stupid and cannot do this thing in runtime
+    // guess i am a developer now, lol
+    // a function should only do one thing, here there are two functions inside of a function
+    function hexToHSL(hex) {
+      const r = parseInt(hex.slice(1, 3), 16) / 255;
+      const g = parseInt(hex.slice(3, 5), 16) / 255;
+      const b = parseInt(hex.slice(5, 7), 16) / 255;
+
+      const max = Math.max(r, g, b);
+      const min = Math.min(r, g, b);
+
+      let h;
+      let s;
+      const l = (max + min) / 2;
+      // unimportant logic that cinverts hex to hsl
+      if (max === min) {
+        h = s = 0;
+      } else {
+        const d = max - min;
+
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+        switch (max) {
+          case r:
+            h = (g - b) / d + (g < b ? 6 : 0);
+            break;
+
+          case g:
+            h = (b - r) / d + 2;
+            break;
+
+          case b:
+            h = (r - g) / d + 4;
+            break;
+        }
+
+        h /= 6;
+      }
+
+      return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+    }
+
+    /**
+     *
+     * @param {*this is the stupid hexToHSl function} conversionFunction
+     * @param {*this is e.target.value's returned array of hsl} hexValue
+     * @param {*this is because i want to make the background 10% lighter} amount
+     * @returns
+     */
+    function lightenColor(conversionFunction, hexValue, amount = 30) {
+      const [h, s, l] = conversionFunction(hexValue);
+      setLighterBackGround(`hsl(${h}, ${s}%, ${Math.min(l + amount, 100)}%)`);
+    }
+
+    lightenColor(hexToHSL, e.target.value);
+
+    // const lightenedColor = lightenColor(hexToHSL, e.target.value);
+    // console.log(lightenedColor);
   }
 
   return (
@@ -56,7 +121,7 @@ export default function Form() {
             {/* some extra logic to extract the name for example : facebook from facebook.com whiuch is the easiest part imp */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
               {urlError ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-red-500">
+                <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
                   {urlError}
                 </span>
               ) : (
@@ -65,7 +130,7 @@ export default function Form() {
                   {/* setTimeout(() =>  */}
                   {/* // url looks ok */}
                   {/* // }, 3000); */}
-                  URL looks good dawg
+                  URL looks good homie 😉
                 </span>
               )}
 
@@ -92,9 +157,11 @@ export default function Form() {
                   </p>
                 </div>
                 <input
+                  onChange={(e) => handleColorChange(e)}
                   type="color"
-                  value="#3b82f6"
+                  value={colorPickerHex}
                   className="h-12 w-12 cursor-pointer rounded-full border border-neutral-700 bg-neutral-800 p-1 shadow-inner shadow-black/50"
+                  style={{ backgroundColor: lighterBackGround }}
                 />
               </div>
               <div className="mt-5 flex items-center gap-3 text-xs text-neutral-500">
