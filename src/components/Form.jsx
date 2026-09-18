@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 
 export default function Form() {
   const [cardInfo, setCardInfo] = useState([]);
+  const [userName, setUserName] = useState(null);
   const [urlError, setUrlError] = useState("");
   const [colorPickerHex, setColorPickerHex] = useState("");
   const [lighterBackGround, setLighterBackGround] = useState("");
   const [urlValidStatus, seturlValidStatus] = useState(false);
   const [category, setCategory] = useState(null);
-  const [userName, setUserName] = useState(null);
-  const [userNameErrorStatus, setUserNameErrorStatus] = useState(false);
+  const [userNameEmptyStatus, setUserNameEmptyStatus] = useState(false);
+  const [userNameMultipleWordStatus, setUserNameMultipleWordStatus] =
+    useState(false);
 
   // useEffect(() => {
   //   console.log(cardInfo);
@@ -61,7 +63,7 @@ export default function Form() {
       let h;
       let s;
       const l = (max + min) / 2;
-      // unimportant logic that cinverts hex to hsl
+      // unimportant GTP logic that converts hex to hsl - dont even want to understand it !!!
       if (max === min) {
         h = s = 0;
       } else {
@@ -117,17 +119,16 @@ export default function Form() {
   // onek validations normally kore but ami ei duitai korbo
   function handleUserNameBlur(eventFired) {
     if (eventFired.target.value === "") {
-      setUserNameErrorStatus(true);
-    } else {
-      setUserNameErrorStatus(false);
-      // multiple words check
-      // triggter cannot have multiple words
-      if (eventFired.target.value.split(" ").lenght > 2) {
-        setUserNameErrorStatus(true);
-      } else {
-        setUserNameErrorStatus(true);
-      }
+      setUserNameEmptyStatus(true);
+      return;
     }
+    //  man i always write length as lenght
+    if (eventFired.target.value.split(" ").length > 1) {
+      setUserNameMultipleWordStatus(true);
+      return;
+    }
+    console.log(eventFired.target.value);
+    setUserName(eventFired.target.value);
   }
 
   return (
@@ -239,9 +240,19 @@ export default function Form() {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* <!-- Username Input --> */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                Username
-              </span>
+              {userNameEmptyStatus ? (
+                <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                  Bro, The user name cannot be empty
+                </span>
+              ) : userNameMultipleWordStatus ? (
+                <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
+                  Bro, The userName cannot have multiple words
+                </span>
+              ) : (
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                  Username
+                </span>
+              )}
               <input
                 onBlur={(e) => handleUserNameBlur(e)}
                 type="text"
