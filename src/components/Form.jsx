@@ -195,21 +195,13 @@ export default function Form() {
             {/* <!-- Category Select --> */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
               <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                Category
+                Please Select a Category
               </span>
               <select
                 onChange={(e) => hangleCategoryChange(e)}
                 className="w-full bg-transparent text-base text-white outline-none"
               >
-                {category ? (
-                  <option value="" className="bg-neutral-900 text-red-400">
-                    Please do not select the first option.
-                  </option>
-                ) : (
-                  <option value="" className="bg-neutral-900 text-white">
-                    Select category
-                  </option>
-                )}
+                <option className="bg-neutral-900 text-white"></option>
                 <option className="bg-neutral-900 text-white">Social</option>
                 <option className="bg-neutral-900 text-white">Video</option>
                 <option className="bg-neutral-900 text-white">Design</option>
