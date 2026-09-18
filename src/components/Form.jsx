@@ -118,6 +118,10 @@ export default function Form() {
   // aro ekta validation jodi username field e miltiple words hoi - aro ekta state - multiple span tag renders cannot be done with one state
   // onek validations normally kore but ami ei duitai korbo
   function handleUserNameBlur(eventFired) {
+    // These two reset the previous validation errors before checking/accepting the current username.
+    setUserNameEmptyStatus(false);
+    setUserNameMultipleWordStatus(false);
+
     if (eventFired.target.value === "") {
       setUserNameEmptyStatus(true);
       return;
@@ -127,6 +131,17 @@ export default function Form() {
       setUserNameMultipleWordStatus(true);
       return;
     }
+
+    /**
+     * "this version of handleUserNameBlur - almost ok - but it is procedurally going from checking whether the input field is first empty or not - then if someone puts multiple words - then error is rendered with text-orange-400 - does not account for the fact if someone has entered multiple words first git add . "
+     * git did not let me push 
+    if (eventFired.target.value.split(" ").length > 1) {
+      setUserNameEmptyStatus(false)
+      setUserNameMultipleWordStatus(true);
+      return;
+      }
+      */
+
     console.log(eventFired.target.value);
     setUserName(eventFired.target.value);
   }
