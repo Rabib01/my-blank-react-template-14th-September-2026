@@ -18,11 +18,9 @@ console.log(month);
 const day = formattedTimeParts.find((p) => p.type === "day").value;
 console.log(day);
 const dayPeriod = formattedTimeParts.find((p) => p.type === "dayPeriod").value; // doing this in one line is so very confusing man
-const status =
-  dayPeriod
-    .slice(dayPeriod.lastIndexOf(" ") + 1)
-    .charAt(0)
-    .toUpperCase() + dayPeriod.slice(dayPeriod.lastIndexOf(" ") + 1).slice(1);
+const lastWord = dayPeriod.slice(dayPeriod.lastIndexOf(" ") + 1);
+const greetWordFormatted = lastWord[0].toUpperCase() + lastWord.slice(1);
+console.log(greetWordFormatted);
 
 export default function Header() {
   return (
