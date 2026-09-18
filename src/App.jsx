@@ -7,10 +7,10 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <Header />
-      {/* <Form />
-      <ContentArea />
-      <Footer /> */}
+      {/* <Header /> */}
+      <Form />
+      {/* <ContentArea /> */}
+      {/* <Footer /> */}
     </>
   );
 }
