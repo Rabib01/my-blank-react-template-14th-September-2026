@@ -6,19 +6,27 @@ const information = [
 
 export default function Form() {
   const [cardInfo, setCardInfo] = useState([]);
+
   const [userName, setUserName] = useState(null);
-  const [urlError, setUrlError] = useState("");
-  const [colorPickerHex, setColorPickerHex] = useState("");
-  const [lighterBackGround, setLighterBackGround] = useState("");
-  const [urlValidStatus, seturlValidStatus] = useState(false);
-  const [category, setCategory] = useState(null);
   const [userNameEmptyStatus, setUserNameEmptyStatus] = useState(false);
   const [userNameMultipleWordStatus, setUserNameMultipleWordStatus] =
     useState(false);
+
+  const [url, setUrl] = useState(null);
+  const [urlError, setUrlError] = useState("");
+  const [urlValidStatus, seturlValidStatus] = useState(false);
+
+  const [colorPickerHex, setColorPickerHex] = useState("");
+  const [lighterBackGround, setLighterBackGround] = useState("");
+
+  const [category, setCategory] = useState(null);
+  const [categoryEmptyStatus, setCategoryEmptyStatus] = useState(false);
+
   const [password, setPassword] = useState("");
   const [passwordEmptyStatus, setPasswordEmptyStatus] = useState(false);
   const [passwordSixCharacterStatus, setPasswordSixCharacterStatus] =
     useState(false);
+
   // useEffect(() => {
   //   console.log(cardInfo);
   // }, [cardInfo]);
@@ -35,6 +43,7 @@ export default function Form() {
         const url = new URL(websiteURLString);
         setUrlError("");
         seturlValidStatus(true);
+        setUrl(url);
 
         // this is to go back to Please Enter URL with text-neutral-400 after URL looks good homie, 😉 😉 😉
         setTimeout(() => {
@@ -118,7 +127,12 @@ export default function Form() {
 
   // if (firedEvent === "") will handle this validation onSubmit
   function hangleCategoryChange(firedEvent) {
-    // setCategory(firedEvent.target.value);
+    if (firedEvent.target.value === "") {
+      setCategoryEmptyStatus(true);
+    } else {
+      setCategory(firedEvent.target.value);
+      setCategoryEmptyStatus(false);
+    }
   }
 
   // ekta validation jodi useName field ta empty thake - elta state
@@ -137,10 +151,9 @@ export default function Form() {
     if (eventFired.target.value.split(" ").length > 1) {
       setUserNameMultipleWordStatus(true);
       return;
+    } else {
+      setUserName(eventFired.target.value);
     }
-
-    console.log(eventFired.target.value);
-    // setUserName(eventFired.target.value);
 
     /**
      * git did not let me push 
@@ -157,7 +170,7 @@ export default function Form() {
         }
         
     * "this version of handleUserNameBlur - almost ok - but it is procedurally going from checking whether the input field is first empty or not - then if someone puts multiple words - then error is rendered with text-orange-400 - does not account for the fact if someone has entered multiple words first git add . "
-      */
+      // */
   }
 
   // first validation  - check to see if the password field is empty ?
@@ -174,6 +187,9 @@ export default function Form() {
     if (eventFired.target.value.length < 6) {
       setPasswordSixCharacterStatus(true);
       return;
+    }
+    if (eventFired.target.value.length >= 6) {
+      setPassword(eventFired.target.value);
     }
   }
 

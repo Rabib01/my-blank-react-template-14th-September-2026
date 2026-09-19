@@ -64,10 +64,10 @@ function App() {
           pointerEvents: "none",
           left: -20,
           top: -20,
-          width: 40,
+          width: 30,
           // cursor: "none",
-          // zIndex: 10,
-          height: 40,
+          zIndex: 10,
+          height: 30,
         }}
       />
       {/* <Header /> */}
