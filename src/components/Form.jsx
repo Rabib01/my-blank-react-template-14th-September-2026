@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+const information = [
+  { url: "", userName: "john doe", password: "", hexColor: "", category: "" },
+];
+
 export default function Form() {
   const [cardInfo, setCardInfo] = useState([]);
   const [userName, setUserName] = useState(null);
@@ -114,7 +118,7 @@ export default function Form() {
 
   // if (firedEvent === "") will handle this validation onSubmit
   function hangleCategoryChange(firedEvent) {
-    setCategory(firedEvent.target.value);
+    // setCategory(firedEvent.target.value);
   }
 
   // ekta validation jodi useName field ta empty thake - elta state
@@ -136,7 +140,7 @@ export default function Form() {
     }
 
     console.log(eventFired.target.value);
-    setUserName(eventFired.target.value);
+    // setUserName(eventFired.target.value);
 
     /**
      * git did not let me push 
@@ -173,10 +177,15 @@ export default function Form() {
     }
   }
 
+  function handleFormSubmit() {}
+
   return (
     <div className="max-w-7xl mx-auto mt-8 px-4">
       {/* The form elements starts here !!  */}
-      <form className="mb-10 rounded-2xl border border-neutral-800 bg-gradient-to-br from-neutral-900/70 to-neutral-800/40 p-8 shadow-2xl shadow-black/40 backdrop-blur">
+      <form
+        onSubmit={handleFormSubmit()}
+        className="mb-10 rounded-2xl border border-neutral-800 bg-gradient-to-br from-neutral-900/70 to-neutral-800/40 p-8 shadow-2xl shadow-black/40 backdrop-blur"
+      >
         <div className="mb-8 flex flex-col gap-3">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-400">
             New bookmark
