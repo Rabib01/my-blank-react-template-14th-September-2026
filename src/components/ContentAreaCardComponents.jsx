@@ -1,16 +1,11 @@
 // divide and conquer, aint nothing more there is to this ✅
-
 // first step would be to iterate with the data as it,✅
-
 //  After all of the cards are rendered, I will figure out how I can set the color of text and the background color dynamically ?? brandBackGround ✅
-
-// After this I will figure out how the reveal Onclick works to reveal the password
-
-//  this I will figure out once I can see All of the cards being rendered
+// After this I will figure out how the reveal Onclick works to reveal the password✅
+//  this I will figure out once I can see All of the cards being rendered - map shorthand forms by data array with platform Abbreviatopn object ⚠️ - korleo ekdom sesh e korbo eita
 
 import { useState } from "react";
 
-//  i am not sure that I even want to figure this out
 const platformAbbreviations = {
   facebook: "Fb",
   twitch: "Tw",
