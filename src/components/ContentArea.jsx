@@ -2,9 +2,19 @@ import ContentAreaCardComponents from "./ContentAreaCardComponents";
 
 // import SearchSortFilter from "./SearchSortFilter";
 
-// const information = [
-//   {id:"UUID", url: "", userName: "john doe", password: "", hexColor: "", category: "" },
-// ];
+{
+  /**
+  {
+        id: crypto.randomUUID(),
+        url,
+        userName,
+        category,
+        password,
+        brandColor: colorPickerHex,
+        brandBackGround: lighterBackGround,
+      }, 
+      */
+}
 //
 // from the url i have to extract the form name like facebook from facebook.com
 // from the url i also have to extract the short form literal like FB from facebook
@@ -15,64 +25,72 @@ const dataToBeMapped = [
     url: "https://facebook.com",
     userName: "myaccount",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
   {
     id: crypto.randomUUID(),
     url: "https://youtube.com",
     userName: "designer_pro",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
   {
     id: crypto.randomUUID(),
     url: "https://dribbble.com",
     userName: "streamer_123",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
   {
     id: crypto.randomUUID(),
     url: "https://twitch.tv",
     userName: "streamer_123",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
   {
     id: crypto.randomUUID(),
     url: "https://github.com",
     userName: "devuser",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
   {
     id: crypto.randomUUID(),
     url: "https://netflix.com",
     userName: "user@gmail.com",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
   {
     id: crypto.randomUUID(),
     url: "https://amazon.com",
     userName: "shopper@gmail.com",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
   {
     id: crypto.randomUUID(),
     url: "https://spotify.com",
     userName: "musiclover",
     password: "asw@123G",
-    hexColor: "#ff23AD",
+    brandColor: "#ff23AD",
     category: "entertainment",
+    brandBackGround: "#FFB8E5",
   },
 ];
 

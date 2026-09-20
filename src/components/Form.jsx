@@ -213,7 +213,15 @@ export default function Form() {
 
     setCardInfo([
       ...cardInfo,
-      { id: crypto.randomUUID(), url, userName, category, password },
+      {
+        id: crypto.randomUUID(),
+        url,
+        userName,
+        category,
+        password,
+        brandColor: colorPickerHex,
+        brandBackGround: lighterBackGround,
+      },
     ]);
   }
 
