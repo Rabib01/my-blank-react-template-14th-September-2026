@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-const information = [
-  { url: "", userName: "john doe", password: "", hexColor: "", category: "" },
-];
+// const information = [
+//   {ifL url: "", userName: "john doe", password: "", hexColor: "", category: "" },
+// ];
 
 export default function Form() {
   const [cardInfo, setCardInfo] = useState([]);
@@ -16,7 +16,7 @@ export default function Form() {
   const [urlError, setUrlError] = useState("");
   const [urlValidStatus, seturlValidStatus] = useState(false);
 
-  const [colorPickerHex, setColorPickerHex] = useState("");
+  const [colorPickerHex, setColorPickerHex] = useState("#000000");
   const [lighterBackGround, setLighterBackGround] = useState("");
 
   const [category, setCategory] = useState(null);
@@ -27,9 +27,9 @@ export default function Form() {
   const [passwordSixCharacterStatus, setPasswordSixCharacterStatus] =
     useState(false);
 
-  // useEffect(() => {
-  //   console.log(cardInfo);
-  // }, [cardInfo]);
+  useEffect(() => {
+    console.log(cardInfo);
+  }, [cardInfo]);
 
   function handleURLBlur(e) {
     // validation steps for correct format and turns blank
@@ -52,7 +52,6 @@ export default function Form() {
 
         // url = will go to the state where on clicking create bookmark - nothing else to do here !!!
       } catch {
-        console.log(`not a valid url`);
         setUrlError(
           "Invalid URL, please correct the format - https://something.com",
         );
@@ -193,13 +192,21 @@ export default function Form() {
     }
   }
 
-  function handleFormSubmit() {}
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    if (categoryEmptyStatus) return;
+
+    setCardInfo([
+      ...cardInfo,
+      { id: crypto.randomUUID(), url, userName, category, password },
+    ]);
+  }
 
   return (
     <div className="max-w-7xl mx-auto mt-8 px-4">
       {/* The form elements starts here !!  */}
       <form
-        onSubmit={handleFormSubmit()}
+        onSubmit={handleFormSubmit}
         className="mb-10 rounded-2xl border border-neutral-800 bg-gradient-to-br from-neutral-900/70 to-neutral-800/40 p-8 shadow-2xl shadow-black/40 backdrop-blur"
       >
         <div className="mb-8 flex flex-col gap-3">
