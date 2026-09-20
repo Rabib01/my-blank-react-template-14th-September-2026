@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // const information = [
-//   {ifL url: "", userName: "john doe", password: "", hexColor: "", category: "" },
+//   {id:"UUID", url: "", userName: "john doe", password: "", hexColor: "", category: "" },
 // ];
 
 export default function Form() {
@@ -206,6 +206,7 @@ export default function Form() {
     }
   }
 
+  // function to handle onSubmit of Form
   function handleFormSubmit(e) {
     e.preventDefault();
     if (categoryEmptyStatus) return;
