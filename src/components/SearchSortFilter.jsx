@@ -1,20 +1,20 @@
 export default function SearchSortFilter() {
   return (
-    <section class="rounded-3xl border border-neutral-800 bg-gradient-to-br from-neutral-900/80 to-neutral-900/40 p-6 shadow-2xl shadow-black/40 backdrop-blur">
-      <div class="flex flex-col gap-4 lg:flex-row lg:items-center">
+    <section className="rounded-3xl border border-neutral-800 bg-gradient-to-br from-neutral-900/80 to-neutral-900/40 p-6 shadow-2xl shadow-black/40 backdrop-blur">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
         {/* <!-- Search Bar --> */}
-        <label class="relative flex-1">
-          <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500">
+        <label className="relative flex-1">
+          <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500">
             <svg
-              class="h-4 w-4"
+              className="h-4 w-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               ></path>
             </svg>
@@ -22,22 +22,22 @@ export default function SearchSortFilter() {
           <input
             type="text"
             placeholder="Search saved credentials"
-            class="w-full rounded-2xl border border-neutral-800 bg-neutral-950/60 py-3 pl-11 pr-4 text-sm text-white placeholder:text-neutral-500 transition focus:border-blue-500 focus:bg-neutral-950 focus:outline-none"
+            className="w-full rounded-2xl border border-neutral-800 bg-neutral-950/60 py-3 pl-11 pr-4 text-sm text-white placeholder:text-neutral-500 transition focus:border-blue-500 focus:bg-neutral-950 focus:outline-none"
           />
         </label>
 
-        <div class="flex flex-wrap gap-2">
-          <button class="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white">
+        <div className="flex flex-wrap gap-2">
+          <button className="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white">
             <svg
-              class="h-4 w-4"
+              className="h-4 w-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M3 4h18l-8 8v6l-4 4v-8z"
               ></path>
             </svg>

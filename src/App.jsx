@@ -54,7 +54,7 @@ function App() {
   return (
     <>
       {" "}
-      <div
+      {/* <div
         style={{
           position: "fixed",
           backgroundColor: "grey",
@@ -69,9 +69,9 @@ function App() {
           zIndex: 10,
           height: 30,
         }}
-      />
+        /> */}{" "}
       {/* <Header /> */}
-      <Form />
+      {/* <Form /> */}
       <ContentArea />
       {/* <Footer /> */}
     </>

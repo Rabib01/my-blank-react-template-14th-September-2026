@@ -4,6 +4,6 @@ body {
   @apply bg-neutral-900 text-white;
 }
 
-* {
+/* * {
   @apply cursor-none;
-}
+} */
