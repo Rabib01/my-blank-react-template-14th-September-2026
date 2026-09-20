@@ -6,14 +6,14 @@
 
 import { useState } from "react";
 
-const platformAbbreviations = {
-  facebook: "Fb",
-  twitch: "Tw",
-  spotify: "Sp",
-  youTube: "Yt",
-  instagram: "Ig",
-  linkedIn: "Li",
-};
+// const platformAbbreviations = {
+//   facebook: "Fb",
+//   twitch: "Tw",
+//   spotify: "Sp",
+//   youTube: "Yt",
+//   instagram: "Ig",
+//   linkedIn: "Li",
+// };
 
 export default function ContentAreaCardComponents({ data }) {
   const [revealPassword, setReavealPassword] = useState(false);

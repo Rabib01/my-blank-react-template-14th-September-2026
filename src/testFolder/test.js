@@ -36,3 +36,55 @@ const abbreviated = datu.slice(
   datu.lastIndexOf("/") + 3,
 );
 console.log(abbreviated);
+
+const data = [
+  {
+    id: crypto.randomUUID(),
+    url: "https://facebook.com",
+    userName: "myaccount",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://youtube.com",
+    userName: "designer_pro",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://youtube.com",
+    userName: "designer_pro",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://dribbble.com",
+    userName: "streamer_123",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+  },
+];
+
+// search based on name and url
+const searchedText = "designer_pro";
+
+// const filtered = data.map((dat) =>
+//   dat.filter((da) => da.userName === searchedText),
+// );
+// console.log(filtered);
+
+// objects dont have a filter method
+
+const filtered = data.filter((dat) => dat.userName === searchedText);
+console.log(filtered);
