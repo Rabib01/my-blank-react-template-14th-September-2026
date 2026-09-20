@@ -21,7 +21,6 @@ export default function Form() {
 
   const [category, setCategory] = useState(null);
   const [categoryEmptyStatus, setCategoryEmptyStatus] = useState(false);
-  const [categoryCoolMessage, setCategoryCoolMessage] = useState(false);
 
   const [password, setPassword] = useState("");
   const [passwordEmptyStatus, setPasswordEmptyStatus] = useState(false);
@@ -65,9 +64,6 @@ export default function Form() {
     setColorPickerHex(e.target.value);
 
     // all of this to get a lighter background after color picker is clickerd
-    // flow hooche e.target.value theke hex strng ber korbo -> lighten color function e hexToHSL conversion function and e.target.value pass korbo -> hex string is directly destructured to hsl array values inside of lighten color function -> lighten color function takes the hsl values and comes with a lighter lumonisoty value for setting the background of the color picker -> lighter background state is set here -> this changes the backgeound color of lighter background on style since tailwind is stupid and cannot do this thing in runtime
-    // guess i am a developer now, lol
-    // a function should only do one thing, here there are two functions inside of a function
     function hexToHSL(hex) {
       const r = parseInt(hex.slice(1, 3), 16) / 255;
       const g = parseInt(hex.slice(3, 5), 16) / 255;
@@ -120,9 +116,6 @@ export default function Form() {
     }
 
     lightenColor(hexToHSL, e.target.value);
-
-    // const lightenedColor = lightenColor(hexToHSL, e.target.value);
-    // console.log(lightenedColor);
   }
 
   // if (firedEvent === "") will handle this validation onSubmit
@@ -131,19 +124,6 @@ export default function Form() {
       setCategoryEmptyStatus(true);
     } else {
       setCategory(firedEvent.target.value);
-      setCategoryEmptyStatus(false);
-    }
-  }
-
-  function handleCategoryBlur(firedEvent) {
-    if (firedEvent.target.value === "") {
-      setCategoryEmptyStatus(true);
-    } else {
-      setCategory(firedEvent.target.value);
-      setCategoryCoolMessage(true);
-      setTimeout(() => {
-        setCategoryCoolMessage(false);
-      }, 3000);
       setCategoryEmptyStatus(false);
     }
   }
@@ -167,23 +147,6 @@ export default function Form() {
     } else {
       setUserName(eventFired.target.value);
     }
-
-    /**
-     * git did not let me push 
-     * ..
-    
-    if (eventFired.target.value === "") {
-      setUserNameEmptyStatus(true);
-      return;
-      }
-      if (eventFired.target.value.split(" ").length > 1) {
-        setUserNameEmptyStatus(false)
-        setUserNameMultipleWordStatus(true);
-        return;
-        }
-        
-    * "this version of handleUserNameBlur - almost ok - but it is procedurally going from checking whether the input field is first empty or not - then if someone puts multiple words - then error is rendered with text-orange-400 - does not account for the fact if someone has entered multiple words first git add . "
-      // */
   }
 
   // first validation  - check to see if the password field is empty ?
@@ -238,10 +201,6 @@ export default function Form() {
 
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {/* <!-- Website URL Input starts here --> */}
-            {/* Validate whether the field is empty - if empty show error */}
-            {/* validate whether the format of the url is ok */}
-            {/* some extra logic to extract the name for example : facebook from facebook.com whiuch is the easiest part imp */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
               {/* never thought a day would come when I would be using a ternary operator with multiple conditions */}
               {urlError ? (
@@ -298,21 +257,10 @@ export default function Form() {
 
             {/* <!-- Category Select --> */}
             <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              {categoryEmptyStatus ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
-                  Homie, please select a category
-                </span>
-              ) : categoryCoolMessage ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-green-400">
-                  Category Selection looks good Homie, 😉 😉 😉
-                </span>
-              ) : (
-                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                  Please select a Category
-                </span>
-              )}
+              <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                Please select a Category
+              </span>
               <select
-                onBlur={handleCategoryBlur}
                 onChange={(e) => hangleCategoryChange(e)}
                 className="w-full bg-transparent text-base text-white outline-none"
               >

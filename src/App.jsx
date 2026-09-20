@@ -72,7 +72,7 @@ function App() {
       />
       {/* <Header /> */}
       <Form />
-      {/* <ContentArea /> */}
+      <ContentArea />
       {/* <Footer /> */}
     </>
   );
