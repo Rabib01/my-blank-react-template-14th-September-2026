@@ -24,9 +24,14 @@ import SearchSortFilter from "./SearchSortFilter";
    *
    * search based on the text passed - this is a js task and not a react task
    * divide and conquer -
-   * - 1st - filter based on a given text
+   * - 1st - filter based on a given text ✅
+   * - 2nd - search based on searchState value ✅
    *
-   * - filter based on searchText
+   *  search field faka hoile - default vabe sob card dekha jabe
+   *
+   *  search term na ber korte parle dekhaite hobe not found
+   *
+   *
    *
    */
 }
@@ -34,7 +39,9 @@ import SearchSortFilter from "./SearchSortFilter";
   /**passing the value from the child to the parent - use a useCallback hook */
   // callback needs to receive the value from the child !
   // [searchState] does not need to be a dependency here as setSearchState is a stable react setter
-  //
+  // -
+  // to filter first set up the filter parameter using array.filter()
+  // then map over that filtered data array of objects
 }
 
 const dataToBeMapped = [
@@ -170,11 +177,13 @@ export default function ContentArea() {
 
   // lets say i want to filter data for text = youtube
 
-  const searchTerm = "designer_pro";
-  const urlTerm = "https://netflix.com";
-  const filtered = dataToBeMapped.filter(
-    (data) => data.userName === searchTerm || data.url === urlTerm,
-  );
+  // const searchTerm = "designer_pro";
+  // const urlTerm = "https://netflix.com";
+  const filtered = dataToBeMapped.filter((eachData) => {
+    if (searchState !== "") {
+      return eachData.userName === searchState || eachData.url === searchState;
+    }
+  });
 
   return (
     <main className="p-8">
