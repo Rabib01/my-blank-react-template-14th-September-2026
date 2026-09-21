@@ -1,14 +1,85 @@
 import { useState } from "react";
 
-export default function SearchSortFilter({ onSearchChange }) {
-  const [showSortCategories, setShowSortCategories] = useState(true);
+function SortButton({ handleSortClick }) {
+  return (
+    <button
+      onClick={handleSortClick}
+      className="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white"
+    >
+      <svg
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M3 4h18l-8 8v6l-4 4v-8z"
+        ></path>
+      </svg>
+      Sort by
+    </button>
+  );
+}
 
-  // wanted to implement this based on the categories of the form - Just because I can do that means that I should definetly choose the otyher option
+function SortCategoriesButton({ handleCategoriesClicked }) {
+  return (
+    <>
+      <button
+        onClick={handleCategoriesClicked}
+        className="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white"
+      >
+        Name: A → Z
+      </button>
+
+      <button
+        onClick={handleCategoriesClicked}
+        className="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white"
+      >
+        Name: Z → A
+      </button>
+
+      <button
+        onClick={handleCategoriesClicked}
+        className="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white"
+      >
+        Date: Oldest
+      </button>
+
+      <button
+        onClick={handleCategoriesClicked}
+        className="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white"
+      >
+        Date: Newest
+      </button>
+    </>
+  );
+}
+
+export default function SearchSortFilter({ onSearchChange }) {
+  const [showSortButton, setShowSortButton] = useState(true);
 
   function handleTextFieldChange(e) {
     const state = e.target.value;
     onSearchChange(state);
   }
+
+  function handleSortClick(e) {
+    // e.target         → <path>
+    // e.currentTarget  → <button></button>
+    if (e.target) {
+      setShowSortButton((prev) => !prev);
+    }
+  }
+
+  function handleCategoriesClicked(e) {
+    setShowSortButton((prev) => !prev);
+    console.log(e.target.textContent);
+  }
+
+  // wanted to implement this based on the categories of the form - Just because I can do that means that I should definetly choose the otyher option
 
   return (
     <section className="rounded-3xl border border-neutral-800 bg-gradient-to-br from-neutral-900/80 to-neutral-900/40 p-6 shadow-2xl shadow-black/40 backdrop-blur">
@@ -39,29 +110,33 @@ export default function SearchSortFilter({ onSearchChange }) {
         </label>
 
         <div className="flex flex-wrap gap-2">
-          {showSortCategories && (
-            <button
-              onClick={() => setShowSortCategories((prevState) => !prevState)}
-              className="inline-flex items-center gap-2 rounded-2xl border border-neutral-800/80 bg-neutral-900/80 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-neutral-300 transition hover:border-blue-500 hover:text-white"
-            >
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 4h18l-8 8v6l-4 4v-8z"
-                ></path>
-              </svg>
-              Sort by
-            </button>
+          {showSortButton ? (
+            <SortButton handleSortClick={handleSortClick} />
+          ) : (
+            <SortCategoriesButton
+              handleCategoriesClicked={handleCategoriesClicked}
+            />
           )}
+
+          {/* this is a simple way to be doing this, but i will instead do it in my ternry option way
+          {showSortOptions && (
+          <div>
+          <button>Name</button>
+          <button>Category</button>
+          <button>Date added</button>
+          </div>
+          )}
+          */}
         </div>
       </div>
     </section>
   );
+}
+
+{
+  /** Should know the difference between all these by now - gues the rest will come to me naturally after everytrhing falls apart and with more practise 
+onClick={handleSortButtonClick}     // ✅ React calls it on click
+onClick={handleSortButtonClick()}   // ❌ calls it during render
+onClick={() => handleSortButtonClick()} // ✅ wrapper calls it on click
+   */
 }
