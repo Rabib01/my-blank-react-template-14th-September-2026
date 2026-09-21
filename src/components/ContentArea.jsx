@@ -179,10 +179,13 @@ export default function ContentArea() {
 
   // const searchTerm = "designer_pro";
   // const urlTerm = "https://netflix.com";
-  const filtered = dataToBeMapped.filter(
-    (eachData) =>
-      eachData.userName === searchState || eachData.url === searchState,
-  );
+  const filtered = dataToBeMapped.filter((eachData, idx, arr) => {
+    if (searchState !== "") {
+      return eachData.userName === searchState || eachData.url === searchState;
+    } else {
+      return arr;
+    }
+  });
 
   return (
     <main className="p-8">
@@ -194,13 +197,9 @@ export default function ContentArea() {
         {/* <!-- Password Cards Grid --> */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {/* <!-- Card 1 - Facebook --> */}
-          {searchState
-            ? filtered.map((eachData) => (
-                <ContentAreaCardComponents key={eachData.id} data={eachData} />
-              ))
-            : dataToBeMapped.map((eachData) => (
-                <ContentAreaCardComponents key={eachData.id} data={eachData} />
-              ))}
+          {filtered.map((eachData) => (
+            <ContentAreaCardComponents key={eachData.id} data={eachData} />
+          ))}
           {/* All cards ends  */}
         </div>
       </div>
