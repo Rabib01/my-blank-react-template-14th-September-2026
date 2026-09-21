@@ -27,7 +27,7 @@ import SearchSortFilter from "./SearchSortFilter";
    * - 1st - filter based on a given text ✅
    * - 2nd - search based on searchState value ✅
    *
-   *  search field faka hoile - default vabe sob card dekha jabe
+   *  search field faka hoile - default vabe sob card dekha jabe ✅
    *
    *  search term na ber korte parle dekhaite hobe not found
    *
@@ -179,11 +179,10 @@ export default function ContentArea() {
 
   // const searchTerm = "designer_pro";
   // const urlTerm = "https://netflix.com";
-  const filtered = dataToBeMapped.filter((eachData) => {
-    if (searchState !== "") {
-      return eachData.userName === searchState || eachData.url === searchState;
-    }
-  });
+  const filtered = dataToBeMapped.filter(
+    (eachData) =>
+      eachData.userName === searchState || eachData.url === searchState,
+  );
 
   return (
     <main className="p-8">
@@ -195,9 +194,13 @@ export default function ContentArea() {
         {/* <!-- Password Cards Grid --> */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {/* <!-- Card 1 - Facebook --> */}
-          {filtered.map((eachData) => (
-            <ContentAreaCardComponents key={eachData.id} data={eachData} />
-          ))}
+          {searchState
+            ? filtered.map((eachData) => (
+                <ContentAreaCardComponents key={eachData.id} data={eachData} />
+              ))
+            : dataToBeMapped.map((eachData) => (
+                <ContentAreaCardComponents key={eachData.id} data={eachData} />
+              ))}
           {/* All cards ends  */}
         </div>
       </div>
