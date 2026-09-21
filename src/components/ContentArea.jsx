@@ -121,6 +121,24 @@ const dataToBeMapped = [
   },
   {
     id: crypto.randomUUID(),
+    url: "https://netflix.com",
+    userName: "user@gmail.com",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://netflix.com",
+    userName: "user@gmail.com",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+  },
+  {
+    id: crypto.randomUUID(),
     url: "https://amazon.com",
     userName: "shopper@gmail.com",
     password: "asw@123G",
@@ -153,8 +171,9 @@ export default function ContentArea() {
   // lets say i want to filter data for text = youtube
 
   const searchTerm = "designer_pro";
+  const urlTerm = "https://netflix.com";
   const filtered = dataToBeMapped.filter(
-    (data) => data.userName === searchTerm,
+    (data) => data.userName === searchTerm || data.url === urlTerm,
   );
 
   return (
