@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 
 import ContentAreaCardComponents from "./ContentAreaCardComponents";
 import SearchSortFilter from "./SearchSortFilter";
+import ErrorCard from "./ErrorCard";
 
 {
   /**
@@ -197,9 +198,13 @@ export default function ContentArea() {
         {/* <!-- Password Cards Grid --> */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {/* <!-- Card 1 - Facebook --> */}
-          {filtered.map((eachData) => (
-            <ContentAreaCardComponents key={eachData.id} data={eachData} />
-          ))}
+          {filtered.length ? (
+            filtered.map((eachData) => (
+              <ContentAreaCardComponents key={eachData.id} data={eachData} />
+            ))
+          ) : (
+            <ErrorCard />
+          )}
           {/* All cards ends  */}
         </div>
       </div>

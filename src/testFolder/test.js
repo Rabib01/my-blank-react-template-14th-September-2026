@@ -87,4 +87,4 @@ const searchedText = "designer_pro";
 // objects dont have a filter method
 
 const filtered = data.filter((dat) => dat.userName === searchedText);
-console.log(filtered);
+console.log(filtered.length);
