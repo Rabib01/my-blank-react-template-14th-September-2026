@@ -9,7 +9,7 @@ export default function ErrorCard() {
         Opps sorry, mini 404 error: No results were found
       </h3>
 
-      <p className="mt-2 text-sm text-orange-500">
+      <p className="mt-2 text-sm font-semibold text-red-300">
         We couldn't find anything matching your search.
       </p>
     </article>

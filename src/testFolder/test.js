@@ -77,7 +77,7 @@ const data = [
 ];
 
 // search based on name and url
-const searchedText = "designer_pro";
+const searchedText = "designer";
 
 // const filtered = data.map((dat) =>
 //   dat.filter((da) => da.userName === searchedText),
@@ -86,5 +86,31 @@ const searchedText = "designer_pro";
 
 // objects dont have a filter method
 
-const filtered = data.filter((dat) => dat.userName === searchedText);
-console.log(filtered.length);
+const filtered = data.filter((dat) =>
+  dat.userName.toLowerCase().includes(searchedText),
+);
+console.log(filtered);
+
+// function debounce(func, delay = 500) {
+//   let timer;
+//   return (...args) => {
+//     clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       func(...args);
+//     }, delay);
+//   };
+// }
+
+// const handleSearch = debounce((query) => {
+//   console.log("Searching for:", query);
+// }, 500);
+
+// function SearchInput() {
+//   return (
+//     <input
+//       type="text"
+//       placeholder="Search..."
+//       onChange={(e) => handleSearch(e.target.value)}
+//     />
+//   );
+// }

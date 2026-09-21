@@ -325,7 +325,7 @@ export default function Form() {
                 onChange={(e) => hangleCategoryChange(e)}
                 className="w-full bg-transparent text-base text-white outline-none"
               >
-                <option className="bg-neutral-900 text-white"></option>
+                {/* <option className="bg-neutral-900 text-white"></option> */}
                 <option className="bg-neutral-900 text-white">Social</option>
                 <option className="bg-neutral-900 text-white">Video</option>
                 <option className="bg-neutral-900 text-white">Design</option>

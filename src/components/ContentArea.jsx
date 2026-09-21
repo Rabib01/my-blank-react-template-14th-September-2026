@@ -20,24 +20,22 @@ import ErrorCard from "./ErrorCard";
    */
 }
 {
-  /**
+  /** To Do
    * take the data from child prop ✅
    *
-   * search based on the text passed - this is a js task and not a react task
-   * divide and conquer -
-   * - 1st - filter based on a given text ✅
-   * - 2nd - search based on searchState value ✅
+   * Fix the filter conditions so that I can see the results as I am typing them - without debouncing ✅
    *
-   *  search field faka hoile - default vabe sob card dekha jabe ✅
-   *
-   *  search term na ber korte parle dekhaite hobe not found
-   *
-   *
+   * sorting
+   * - Create a category like button that opens up a form and then create states inside of the
+   * - Create the onclick handlers and then handle the click states of filtering inside of the child components
+   * - Create a date object inside of the Content area component to account for the dates that were handled
+   * - find the rest of the way to implement the sorting and filtering,
    *
    */
 }
 {
-  /**passing the value from the child to the parent - use a useCallback hook */
+  /** T H I S     S H I T     I S     V E R Y     I M P O R T A N T
+   * passing the value from the child to the parent - use a useCallback hook */
   // callback needs to receive the value from the child !
   // [searchState] does not need to be a dependency here as setSearchState is a stable react setter
   // -
@@ -58,7 +56,7 @@ const dataToBeMapped = [
   {
     id: crypto.randomUUID(),
     url: "https://youtube.com",
-    userName: "designer_pro",
+    userName: "designerpro",
     password: "asw@123G",
     brandColor: "#ff23AD",
     category: "entertainment",
@@ -67,7 +65,7 @@ const dataToBeMapped = [
   {
     id: crypto.randomUUID(),
     url: "https://youtube.com",
-    userName: "designer_pro",
+    userName: "designerpro",
     password: "asw@123G",
     brandColor: "#ff23AD",
     category: "entertainment",
@@ -76,7 +74,7 @@ const dataToBeMapped = [
   {
     id: crypto.randomUUID(),
     url: "https://youtube.com",
-    userName: "designer_pro",
+    userName: "designerpro",
     password: "asw@123G",
     brandColor: "#ff23AD",
     category: "entertainment",
@@ -85,7 +83,7 @@ const dataToBeMapped = [
   {
     id: crypto.randomUUID(),
     url: "https://youtube.com",
-    userName: "designer_pro",
+    userName: "designerpro",
     password: "asw@123G",
     brandColor: "#ff23AD",
     category: "entertainment",
@@ -169,7 +167,7 @@ export default function ContentArea() {
   const [searchState, setSearchState] = useState("");
 
   const handleKeyStrokeChange = useCallback((value) => {
-    setSearchState(value);
+    setSearchState(value.toLowerCase());
   }, []);
 
   useEffect(() => {
@@ -180,12 +178,11 @@ export default function ContentArea() {
 
   // const searchTerm = "designer_pro";
   // const urlTerm = "https://netflix.com";
-  const filtered = dataToBeMapped.filter((eachData, idx, arr) => {
-    if (searchState !== "") {
-      return eachData.userName === searchState || eachData.url === searchState;
-    } else {
-      return arr;
-    }
+  const filtered = dataToBeMapped.filter((eachData) => {
+    return (
+      eachData.userName.toLowerCase().includes(searchState) ||
+      eachData.url.toLowerCase().includes(searchState)
+    );
   });
 
   return (
@@ -198,7 +195,11 @@ export default function ContentArea() {
         {/* <!-- Password Cards Grid --> */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {/* <!-- Card 1 - Facebook --> */}
-          {filtered.length ? (
+          {!searchState ? (
+            dataToBeMapped.map((eachData) => (
+              <ContentAreaCardComponents key={eachData.id} data={eachData} />
+            ))
+          ) : filtered.length ? (
             filtered.map((eachData) => (
               <ContentAreaCardComponents key={eachData.id} data={eachData} />
             ))
