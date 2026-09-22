@@ -1,7 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
 import Form from "./components/Form";
-import ContentArea from "./components/ContentArea";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 
@@ -71,8 +70,8 @@ function App() {
         }}
         /> */}{" "}
       {/* <Header /> */}
-      {/* <Form /> */}
-      <ContentArea />
+      <Form />
+      {/* <ContentArea /> */}
       {/* <Footer /> */}
     </>
   );

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ContentArea from "./ContentArea.jsx";
 
 // const information = [
 //   {id:"UUID", url: "", userName: "john doe", password: "", hexColor: "", category: "" },
@@ -227,200 +228,207 @@ export default function Form() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto mt-8 px-4">
-      {/* The form elements starts here !!  */}
-      <form
-        onSubmit={handleFormSubmit}
-        className="mb-10 rounded-2xl border border-neutral-800 bg-gradient-to-br from-neutral-900/70 to-neutral-800/40 p-8 shadow-2xl shadow-black/40 backdrop-blur"
-      >
-        <div className="mb-8 flex flex-col gap-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-400">
-            New bookmark
-          </p>
-          <h2 className="text-2xl font-semibold">
-            Store website credentials safely
-          </h2>
-          <p className="text-sm text-neutral-400">
-            Fill the details below. Your brand color helps us render a matching
-            favicon.
-          </p>
-        </div>
+    <>
+      <div className="max-w-7xl mx-auto mt-8 px-4">
+        {/* The form elements starts here !!  */}
+        <form
+          onSubmit={handleFormSubmit}
+          className="mb-10 rounded-2xl border border-neutral-800 bg-gradient-to-br from-neutral-900/70 to-neutral-800/40 p-8 shadow-2xl shadow-black/40 backdrop-blur"
+        >
+          <div className="mb-8 flex flex-col gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-blue-400">
+              New bookmark
+            </p>
+            <h2 className="text-2xl font-semibold">
+              Store website credentials safely
+            </h2>
+            <p className="text-sm text-neutral-400">
+              Fill the details below. Your brand color helps us render a
+              matching favicon.
+            </p>
+          </div>
 
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {/* <!-- Website URL Input starts here --> */}
-            {/* Validate whether the field is empty - if empty show error */}
-            {/* validate whether the format of the url is ok */}
-            {/* some extra logic to extract the name for example : facebook from facebook.com whiuch is the easiest part imp */}
-            <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              {/* never thought a day would come when I would be using a ternary operator with multiple conditions */}
-              {urlError ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                  {urlError}
-                </span>
-              ) : urlValidStatus ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-green-400">
-                  URL looks good homie, 😉 😉 😉
-                </span>
-              ) : (
-                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                  Please Enter URL
-                </span>
-              )}
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+              {/* <!-- Website URL Input starts here --> */}
+              {/* Validate whether the field is empty - if empty show error */}
+              {/* validate whether the format of the url is ok */}
+              {/* some extra logic to extract the name for example : facebook from facebook.com whiuch is the easiest part imp */}
+              <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
+                {/* never thought a day would come when I would be using a ternary operator with multiple conditions */}
+                {urlError ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                    {urlError}
+                  </span>
+                ) : urlValidStatus ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-green-400">
+                    URL looks good homie, 😉 😉 😉
+                  </span>
+                ) : (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                    Please Enter URL
+                  </span>
+                )}
 
-              <input
-                onBlur={(e) => handleURLBlur(e)}
-                type="url"
-                placeholder="https://example.com"
-                className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
-              />
-              <span className="text-xs text-neutral-500">
-                Include https:// for best results.
-              </span>
-            </label>
-
-            {/* <!-- Color Picker --> */}
-            <div className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                    Favicon color
-                  </p>
-                  <p className="text-xs text-neutral-500">
-                    Select the accent color we should render.
-                  </p>
-                </div>
                 <input
-                  onChange={(e) => handleColorChange(e)}
-                  type="color"
-                  value={colorPickerHex}
-                  className="h-12 w-12 cursor-pointer rounded-full border border-neutral-700 bg-neutral-800 p-1 shadow-inner shadow-black/50"
-                  style={{ backgroundColor: lighterBackGround }}
+                  onBlur={(e) => handleURLBlur(e)}
+                  type="url"
+                  placeholder="https://example.com"
+                  className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
                 />
-              </div>
-              <div className="mt-5 flex items-center gap-3 text-xs text-neutral-500">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800/80 text-[10px] font-semibold uppercase text-neutral-400">
-                  Hex
+                <span className="text-xs text-neutral-500">
+                  Include https:// for best results.
                 </span>
-                <span>Matches any brand primary color.</span>
+              </label>
+
+              {/* <!-- Color Picker --> */}
+              <div className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                      Favicon color
+                    </p>
+                    <p className="text-xs text-neutral-500">
+                      Select the accent color we should render.
+                    </p>
+                  </div>
+                  <input
+                    onChange={(e) => handleColorChange(e)}
+                    type="color"
+                    value={colorPickerHex}
+                    className="h-12 w-12 cursor-pointer rounded-full border border-neutral-700 bg-neutral-800 p-1 shadow-inner shadow-black/50"
+                    style={{ backgroundColor: lighterBackGround }}
+                  />
+                </div>
+                <div className="mt-5 flex items-center gap-3 text-xs text-neutral-500">
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-neutral-700 bg-neutral-800/80 text-[10px] font-semibold uppercase text-neutral-400">
+                    Hex
+                  </span>
+                  <span>Matches any brand primary color.</span>
+                </div>
               </div>
+
+              {/* <!-- Category Select --> */}
+              <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
+                {categoryEmptyStatus ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
+                    Homie, please select a category
+                  </span>
+                ) : categoryCoolMessage ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-green-400">
+                    Category Selection looks good Homie, 😉 😉 😉
+                  </span>
+                ) : (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                    Please select a Category
+                  </span>
+                )}
+                <select
+                  onBlur={handleCategoryBlur}
+                  onChange={(e) => hangleCategoryChange(e)}
+                  className="w-full bg-transparent text-base text-white outline-none"
+                >
+                  {/* <option className="bg-neutral-900 text-white"></option> */}
+                  <option className="bg-neutral-900 text-white">Social</option>
+                  <option className="bg-neutral-900 text-white">Video</option>
+                  <option className="bg-neutral-900 text-white">Design</option>
+                  <option className="bg-neutral-900 text-white">
+                    Streaming
+                  </option>
+                  <option className="bg-neutral-900 text-white">
+                    Productivity
+                  </option>
+                  <option className="bg-neutral-900 text-white">
+                    Entertainment
+                  </option>
+                  <option className="bg-neutral-900 text-white">
+                    Shopping
+                  </option>
+                  <option className="bg-neutral-900 text-white">Music</option>
+                </select>
+                <span className="text-xs text-neutral-500">
+                  Helps you filter quicker later.
+                </span>
+              </label>
             </div>
 
-            {/* <!-- Category Select --> */}
-            <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              {categoryEmptyStatus ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
-                  Homie, please select a category
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* <!-- Username Input --> */}
+              <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
+                {userNameEmptyStatus ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                    Bro, The user name cannot be empty
+                  </span>
+                ) : userNameMultipleWordStatus ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
+                    Bro, The userName cannot have multiple words
+                  </span>
+                ) : (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                    Username
+                  </span>
+                )}
+                <input
+                  onBlur={(e) => handleUserNameBlur(e)}
+                  type="text"
+                  placeholder="Enter username"
+                  className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
+                />
+                <span className="text-xs text-neutral-500">
+                  Use workspace or personal handle.
                 </span>
-              ) : categoryCoolMessage ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-green-400">
-                  Category Selection looks good Homie, 😉 😉 😉
+              </label>
+
+              {/* <!-- Password Input --> */}
+              <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
+                {passwordEmptyStatus ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                    Bro, Password cannot be empty
+                  </span>
+                ) : passwordSixCharacterStatus ? (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
+                    Bro, Password must have six characters or more !
+                  </span>
+                ) : (
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                    Password.
+                  </span>
+                )}
+                <input
+                  onBlur={(e) => handlePassWordBlur(e)}
+                  type="password"
+                  placeholder="Enter password"
+                  className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
+                />
+                <span className="text-xs text-neutral-500">
+                  Choose at least 6 characters.
                 </span>
-              ) : (
-                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                  Please select a Category
-                </span>
-              )}
-              <select
-                onBlur={handleCategoryBlur}
-                onChange={(e) => hangleCategoryChange(e)}
-                className="w-full bg-transparent text-base text-white outline-none"
+              </label>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="text-xs text-neutral-500">
+              By submitting you confirm the entry is safe to store.
+            </div>
+            <div className="flex flex-1 justify-end gap-3">
+              <button
+                type="reset"
+                className="w-full rounded-full border border-neutral-700 px-6 py-3 text-sm font-semibold text-neutral-200 transition hover:border-neutral-500 hover:text-white md:w-auto"
               >
-                {/* <option className="bg-neutral-900 text-white"></option> */}
-                <option className="bg-neutral-900 text-white">Social</option>
-                <option className="bg-neutral-900 text-white">Video</option>
-                <option className="bg-neutral-900 text-white">Design</option>
-                <option className="bg-neutral-900 text-white">Streaming</option>
-                <option className="bg-neutral-900 text-white">
-                  Productivity
-                </option>
-                <option className="bg-neutral-900 text-white">
-                  Entertainment
-                </option>
-                <option className="bg-neutral-900 text-white">Shopping</option>
-                <option className="bg-neutral-900 text-white">Music</option>
-              </select>
-              <span className="text-xs text-neutral-500">
-                Helps you filter quicker later.
-              </span>
-            </label>
+                Clear
+              </button>
+              <button
+                type="submit"
+                className="w-full rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 md:w-auto"
+              >
+                Add Bookmark
+              </button>
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* <!-- Username Input --> */}
-            <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              {userNameEmptyStatus ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                  Bro, The user name cannot be empty
-                </span>
-              ) : userNameMultipleWordStatus ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
-                  Bro, The userName cannot have multiple words
-                </span>
-              ) : (
-                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                  Username
-                </span>
-              )}
-              <input
-                onBlur={(e) => handleUserNameBlur(e)}
-                type="text"
-                placeholder="Enter username"
-                className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
-              />
-              <span className="text-xs text-neutral-500">
-                Use workspace or personal handle.
-              </span>
-            </label>
-
-            {/* <!-- Password Input --> */}
-            <label className="flex flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-sm transition focus-within:border-blue-500 focus-within:bg-neutral-900 focus-within:shadow-lg focus-within:shadow-blue-500/10">
-              {passwordEmptyStatus ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
-                  Bro, Password cannot be empty
-                </span>
-              ) : passwordSixCharacterStatus ? (
-                <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
-                  Bro, Password must have six characters or more !
-                </span>
-              ) : (
-                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
-                  Password.
-                </span>
-              )}
-              <input
-                onBlur={(e) => handlePassWordBlur(e)}
-                type="password"
-                placeholder="Enter password"
-                className="w-full bg-transparent text-base text-white placeholder:text-neutral-500 focus:outline-none"
-              />
-              <span className="text-xs text-neutral-500">
-                Choose at least 6 characters.
-              </span>
-            </label>
-          </div>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <div className="text-xs text-neutral-500">
-            By submitting you confirm the entry is safe to store.
-          </div>
-          <div className="flex flex-1 justify-end gap-3">
-            <button
-              type="reset"
-              className="w-full rounded-full border border-neutral-700 px-6 py-3 text-sm font-semibold text-neutral-200 transition hover:border-neutral-500 hover:text-white md:w-auto"
-            >
-              Clear
-            </button>
-            <button
-              type="submit"
-              className="w-full rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 md:w-auto"
-            >
-              Add Bookmark
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+      <ContentArea />
+    </>
   );
 }
