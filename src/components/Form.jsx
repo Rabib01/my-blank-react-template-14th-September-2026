@@ -5,8 +5,91 @@ import ContentArea from "./ContentArea.jsx";
 //   {id:"UUID", url: "", userName: "john doe", password: "", hexColor: "", category: "" },
 // ];
 
+const initialData = [
+  {
+    id: crypto.randomUUID(),
+    url: "https://facebook.com",
+    userName: "myaccount",
+    password: "asw@123G",
+    brandColor: "#1877F2",
+    category: "entertainment",
+    brandBackGround: "#E7F0FF",
+    dateCreated: new Date(),
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://youtube.com",
+    userName: "designerpro",
+    password: "asw@123G",
+    brandColor: "#FF0000",
+    category: "entertainment",
+    brandBackGround: "#FFE5E5",
+    dateCreated: new Date(),
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://dribbble.com",
+    userName: "streamer_123",
+    password: "asw@123G",
+    brandColor: "#EA4C89",
+    category: "entertainment",
+    brandBackGround: "#FCE7F0",
+    dateCreated: new Date(),
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://twitch.tv",
+    userName: "streamer_123",
+    password: "asw@123G",
+    brandColor: "#9146FF",
+    category: "entertainment",
+    brandBackGround: "#EEE5FF",
+    dateCreated: new Date(),
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://github.com",
+    userName: "devuser",
+    password: "asw@123G",
+    brandColor: "#181717",
+    category: "entertainment",
+    brandBackGround: "#EAEAEA",
+    dateCreated: new Date(),
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://netflix.com",
+    userName: "user@gmail.com",
+    password: "asw@123G",
+    brandColor: "#E50914",
+    category: "entertainment",
+    brandBackGround: "#FFE5E7",
+    dateCreated: new Date(),
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://amazon.com",
+    userName: "shopper@gmail.com",
+    password: "asw@123G",
+    brandColor: "#FF9900",
+    category: "entertainment",
+    brandBackGround: "#FFF0D9",
+    dateCreated: new Date(),
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://spotify.com",
+    userName: "musiclover",
+    password: "asw@123G",
+    brandColor: "#1DB954",
+    category: "entertainment",
+    brandBackGround: "#E3F8EB",
+    dateCreated: new Date(),
+  },
+];
+
 export default function Form() {
-  const [cardInfo, setCardInfo] = useState([]);
+  const [cardInfo, setCardInfo] = useState(initialData);
 
   const [userName, setUserName] = useState(null);
   const [userNameEmptyStatus, setUserNameEmptyStatus] = useState(false);
@@ -45,7 +128,7 @@ export default function Form() {
         const url = new URL(websiteURLString);
         setUrlError("");
         seturlValidStatus(true);
-        setUrl(url);
+        setUrl(url.toString());
 
         // this is to go back to Please Enter URL with text-neutral-400 after URL looks good homie, 😉 😉 😉
         setTimeout(() => {
@@ -222,7 +305,7 @@ export default function Form() {
         password,
         brandColor: colorPickerHex,
         brandBackGround: lighterBackGround,
-        dateOfCreation: new Date(),
+        dateCreated: new Date(),
       },
     ]);
   }
@@ -428,7 +511,7 @@ export default function Form() {
           </div>
         </form>
       </div>
-      <ContentArea />
+      <ContentArea dataToBeMapped={cardInfo} />
     </>
   );
 }

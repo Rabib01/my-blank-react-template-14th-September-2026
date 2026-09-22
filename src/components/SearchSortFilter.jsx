@@ -19,7 +19,7 @@ function SortButton({ handleSortClick }) {
           d="M3 4h18l-8 8v6l-4 4v-8z"
         ></path>
       </svg>
-      Remove Sort: Click to select a sort option
+      Sort By
     </button>
   );
 }

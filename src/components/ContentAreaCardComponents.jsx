@@ -34,18 +34,28 @@ export default function ContentAreaCardComponents({ data }) {
             }}
             className="flex h-12 w-12 items-center justify-center rounded-2xl border border-neutral-800 text-sm font-semibold uppercase "
           >
-            {data.url.slice(
-              data.url.lastIndexOf("/") + 1,
-              data.url.lastIndexOf("/") + 3,
-            )}
+            {data.url.endsWith("/")
+              ? data.url.slice(
+                  data.url.indexOf("/") + 2,
+                  data.url.indexOf("/") + 4,
+                )
+              : data.url.slice(
+                  data.url.lastIndexOf("/") + 1,
+                  data.url.lastIndexOf("/") + 3,
+                )}
             {/* // figure out how to extract the url data to short form later  */}
           </div>
           <div>
             <h3 className="text-lg font-semibold">
-              {data.url.slice(
-                data.url.lastIndexOf("/") + 1,
-                data.url.lastIndexOf("."),
-              )}
+              {data.url.endsWith("/")
+                ? data.url.slice(
+                    data.url.indexOf("/") + 2,
+                    data.url.indexOf("."),
+                  )
+                : data.url.slice(
+                    data.url.lastIndexOf("/") + 1,
+                    data.url.lastIndexOf("."),
+                  )}
             </h3>
             <p className="text-xs uppercase tracking-wide text-neutral-500">
               {data.category}

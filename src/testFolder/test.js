@@ -209,3 +209,10 @@ console.log("");
 //   // filteredbynameAscending,
 //   // filteredbynameDescending,
 // );
+
+const url = "https://hulu.com/";
+// const replaced = url.replace(url.charAt(url.lastIndexOf("/")), "");  even this stupid shit means that replace is moving the first / that it encounters
+const replaced = url.slice(url.indexOf("/") + 2, url.indexOf("."));
+console.log(replaced);
+const firstTwo = url.slice(url.indexOf("/") + 2, url.indexOf("/") + 4);
+console.log(firstTwo);
