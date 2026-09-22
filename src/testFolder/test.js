@@ -89,7 +89,7 @@ const searchedText = "designer";
 const filtered = data.filter((dat) =>
   dat.userName.toLowerCase().includes(searchedText),
 );
-console.log(filtered);
+// console.log(filtered);
 
 // function debounce(func, delay = 500) {
 //   let timer;
@@ -114,3 +114,98 @@ console.log(filtered);
 //     />
 //   );
 // }
+
+let counter = 0;
+
+const dataToBeMapped = [
+  {
+    id: crypto.randomUUID(),
+    url: "https://facebook.com",
+    userName: "alpha",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+    dateOfCreation: new Date(),
+    orderOfCreation: counter++,
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://youtube.com",
+    userName: "beta",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+    dateOfCreation: new Date(),
+    orderOfCreation: counter++,
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://youtube.com",
+    userName: "gamma",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+    dateOfCreation: new Date(),
+    orderOfCreation: counter++,
+  },
+  {
+    id: crypto.randomUUID(),
+    url: "https://youtube.com",
+    userName: "delta",
+    password: "asw@123G",
+    brandColor: "#ff23AD",
+    category: "entertainment",
+    brandBackGround: "#FFB8E5",
+    dateOfCreation: new Date(),
+    orderOfCreation: counter++,
+  },
+];
+const filteredDateAscending = [...dataToBeMapped].sort(
+  (a, b) => b.orderOfCreation - a.orderOfCreation,
+);
+const nameAscending = [...dataToBeMapped].sort((a, b) => {
+  const nameA = a.userName.toLowerCase();
+  const nameB = b.userName.toLowerCase();
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+});
+const nameDescending = [...dataToBeMapped].sort((a, b) => {
+  const nameA = a.userName.toLowerCase();
+  const nameB = b.userName.toLowerCase();
+  if (nameA > nameB) return -1;
+  if (nameA < nameB) return 1;
+  return 0;
+});
+
+console.log(nameDescending);
+
+// date, name, ascending and
+console.log("");
+console.log("");
+
+// THis is one way of doing things
+
+// const filteredbydateAscending = dataToBeMapped.sort((a, b) => {
+//   return a.orderOfCreation - b.orderOfCreation;
+// });
+// const filteredbydateDescending = dataToBeMapped.sort((a, b) => {
+//   return b.orderOfCreation - a.orderOfCreation;
+// });
+
+// const filteredbynameAscending = dataToBeMapped.sort((a, b) => {
+//   return a.userName - b.userName;
+// });
+// const filteredbynameDescending = dataToBeMapped.sort((a, b) => {
+//   return b.userName - a.userName;
+// });
+
+// console.log(
+//   filteredbydateAscending,
+//   filteredbydateDescending,
+//   // filteredbynameAscending,
+//   // filteredbynameDescending,
+// );

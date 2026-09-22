@@ -221,6 +221,7 @@ export default function Form() {
         password,
         brandColor: colorPickerHex,
         brandBackGround: lighterBackGround,
+        dateOfCreation: new Date(),
       },
     ]);
   }

@@ -19,7 +19,7 @@ function SortButton({ handleSortClick }) {
           d="M3 4h18l-8 8v6l-4 4v-8z"
         ></path>
       </svg>
-      Sort by
+      Remove Sort: Click to select a sort option
     </button>
   );
 }
@@ -58,7 +58,7 @@ function SortCategoriesButton({ handleCategoriesClicked }) {
   );
 }
 
-export default function SearchSortFilter({ onSearchChange }) {
+export default function SearchSortFilter({ onSearchChange, handleSortState }) {
   const [showSortButton, setShowSortButton] = useState(true);
 
   function handleTextFieldChange(e) {
@@ -71,12 +71,13 @@ export default function SearchSortFilter({ onSearchChange }) {
     // e.currentTarget  → <button></button>
     if (e.target) {
       setShowSortButton((prev) => !prev);
+      handleSortState("");
     }
   }
 
   function handleCategoriesClicked(e) {
     setShowSortButton((prev) => !prev);
-    console.log(e.target.textContent);
+    handleSortState(e.target.textContent);
   }
 
   // wanted to implement this based on the categories of the form - Just because I can do that means that I should definetly choose the otyher option
@@ -117,16 +118,6 @@ export default function SearchSortFilter({ onSearchChange }) {
               handleCategoriesClicked={handleCategoriesClicked}
             />
           )}
-
-          {/* this is a simple way to be doing this, but i will instead do it in my ternry option way
-          {showSortOptions && (
-          <div>
-          <button>Name</button>
-          <button>Category</button>
-          <button>Date added</button>
-          </div>
-          )}
-          */}
         </div>
       </div>
     </section>
@@ -139,4 +130,16 @@ onClick={handleSortButtonClick}     // ✅ React calls it on click
 onClick={handleSortButtonClick()}   // ❌ calls it during render
 onClick={() => handleSortButtonClick()} // ✅ wrapper calls it on click
    */
+}
+
+{
+  /* this is a simple way to be doing this, but i will instead do it in my ternry option way
+          {showSortOptions && (
+          <div>
+          <button>Name</button>
+          <button>Category</button>
+          <button>Date added</button>
+          </div>
+          )}
+          */
 }
